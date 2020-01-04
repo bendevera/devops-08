@@ -122,9 +122,9 @@ EOF
 function configure_startup_service () {
     printf "***************************************************\n\t\tConfiguring startup service \n***************************************************\n"
 
-    sudo bash -c 'cat > /etc/systemd/system/MNIST-ML-Algos-API.service <<EOF
+    sudo bash -c 'cat > /etc/systemd/system/yummy-rest.service <<EOF
     [Unit]
-    Description=MNIST-ML-Algos-API startup service
+    Description=yummy-rest startup service
     After=network.target
 
     [Service]
@@ -135,11 +135,11 @@ function configure_startup_service () {
     WantedBy=multi-user.target
 EOF'
 
-    sudo chmod 664 /etc/systemd/system/MNIST-ML-Algos-API.service
+    sudo chmod 664 /etc/systemd/system/yummy-rest.service
     sudo systemctl daemon-reload
-    sudo systemctl enable MNIST-ML-Algos-API.service
-    sudo systemctl start MNIST-ML-Algos-API.service
-    sudo service MNIST-ML-Algos-API status
+    sudo systemctl enable yummy-rest.service
+    sudo systemctl start yummy-rest.service
+    sudo service yummy-rest status
 }
 
 Serve the web app through gunicorn
