@@ -104,6 +104,7 @@ EOF'
 }
 
 # Add a launch script
+# source ~/MNIST-ML-Algos-API/venv/bin/activate
 function create_launch_script () {
     printf "***************************************************\n\t\tCreating a Launch script \n***************************************************\n"
 
@@ -111,7 +112,6 @@ function create_launch_script () {
     #!/bin/bash
     cd ~/MNIST-ML-Algos-API
     source ~/.env
-    source ~/MNIST-ML-Algos-API/venv/bin/activate
     gunicorn app:APP -D
 EOF
     sudo chmod 744 /home/ubuntu/launch.sh
