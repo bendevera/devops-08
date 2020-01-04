@@ -24,7 +24,7 @@ function setup_python_venv() {
 
     # Create virtual environment and activate it
     echo ======== Creating and activating virtual env =======
-    virtualenv -p python3 venv
+    virtualenv -p python3 ~/MNIST-ML-Algos-API/venv
     source ./venv/bin/activate
 }
 
