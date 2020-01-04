@@ -160,3 +160,5 @@ setup_nginx
 create_launch_script
 configure_startup_service
 launch_app
+
+printf "***************************************************\n\t\tDONE \n***************************************************\n"
