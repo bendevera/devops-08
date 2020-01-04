@@ -32,13 +32,13 @@ function clone_app_repository() {
     printf "***************************************************\n\t\tFetching App \n***************************************************\n"
     # Clone and access project directory
     echo ======== Cloning and accessing project directory ========
-    if [[ -d ~/yummy-rest ]]; then
-        sudo rm -rf ~/yummy-rest
-        git clone -b develop https://github.com/indungu/yummy-rest.git ~/yummy-rest
-        cd ~/yummy-rest/
+    if [[ -d ~/MNIST-ML-Algos-API ]]; then
+        sudo rm -rf ~/MNIST-ML-Algos-API
+        git clone https://github.com/bendevera/MNIST-ML-Algos-API.git ~/MNIST-ML-Algos-API
+        cd ~/MNIST-ML-Algos-API/
     else
-        git clone -b develop https://github.com/indungu/yummy-rest.git ~/yummy-rest
-        cd ~/yummy-rest/
+        git clone https://github.com/bendevera/MNIST-ML-Algos-API.git ~/MNIST-ML-Algos-API
+        cd ~/MNIST-ML-Algos-API/
     fi
 }
 
@@ -55,10 +55,9 @@ function setup_app() {
 function setup_env() {
     echo ======= Exporting the necessary environment variables ========
     sudo cat > ~/.env << EOF
-    export DATABASE_URL="postgres://budufkitteymek:095f0029056c313190744c68ca69d19a2e315483bc41e059b40d6d9fdccf2599@ec2-107-22-229-213.compute-1.amazonaws.com:5432/d2r8p5ai580nqq"
     export APP_CONFIG="production"
     export SECRET_KEY="mYd3rTyL!tTl#sEcR3t"
-    export FLASK_APP=run.py
+    export FLASK_APP=ml_algos_api.py
 EOF
     echo ======= Exporting the necessary environment variables ========
     source ~/.env
@@ -110,7 +109,7 @@ function create_launch_script () {
 
     sudo cat > /home/ubuntu/launch.sh <<EOF
     #!/bin/bash
-    cd ~/yummy-rest
+    cd ~/MNIST-ML-Algos-API
     source ~/.env
     source ~/venv/bin/activate
     gunicorn app:APP -D
@@ -123,9 +122,9 @@ EOF
 function configure_startup_service () {
     printf "***************************************************\n\t\tConfiguring startup service \n***************************************************\n"
 
-    sudo bash -c 'cat > /etc/systemd/system/yummy-rest.service <<EOF
+    sudo bash -c 'cat > /etc/systemd/system/MNIST-ML-Algos-API.service <<EOF
     [Unit]
-    Description=yummy-rest startup service
+    Description=MNIST-ML-Algos-API startup service
     After=network.target
 
     [Service]
@@ -136,11 +135,11 @@ function configure_startup_service () {
     WantedBy=multi-user.target
 EOF'
 
-    sudo chmod 664 /etc/systemd/system/yummy-rest.service
+    sudo chmod 664 /etc/systemd/system/MNIST-ML-Algos-API.service
     sudo systemctl daemon-reload
-    sudo systemctl enable yummy-rest.service
-    sudo systemctl start yummy-rest.service
-    sudo service yummy-rest status
+    sudo systemctl enable MNIST-ML-Algos-API.service
+    sudo systemctl start MNIST-ML-Algos-API.service
+    sudo service MNIST-ML-Algos-API status
 }
 
 Serve the web app through gunicorn
