@@ -111,7 +111,7 @@ function create_launch_script () {
     #!/bin/bash
     cd ~/MNIST-ML-Algos-API
     source ~/.env
-    source ~/venv/bin/activate
+    source ~/MNIST-ML-Algos-API/venv/bin/activate
     gunicorn app:APP -D
 EOF
     sudo chmod 744 /home/ubuntu/launch.sh
