@@ -25,7 +25,7 @@ function setup_python_venv() {
     # Create virtual environment and activate it
     echo ======== Creating and activating virtual env =======
     virtualenv -p python3 ~/MNIST-ML-Algos-API/venv
-    source ./venv/bin/activate
+    source ~/MNIST-ML-Algos-API/venv/bin/activate
 }
 
 function clone_app_repository() {
@@ -153,7 +153,7 @@ function launch_app() {
 ######################################################################
 
 initialize_worker
-# setup_python_venv
+setup_python_venv
 clone_app_repository
 setup_app
 setup_nginx
