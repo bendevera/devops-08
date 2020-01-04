@@ -112,7 +112,7 @@ function create_launch_script () {
     #!/bin/bash
     cd ~/MNIST-ML-Algos-API
     source ~/.env
-    gunicorn app:APP -D
+    gunicorn app:app -D
 EOF
     sudo chmod 744 /home/ubuntu/launch.sh
     echo ====== Ensuring script is executable =======
