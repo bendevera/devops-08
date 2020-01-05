@@ -1,5 +1,17 @@
 #! /bin/bash
 
+
+######################################################################
+########################     HOW TO USE     ##########################
+######################################################################
+
+# 1. run this script `source deploy-backend.sh`
+# 2. create virtualenv and install requirements 
+#         `virtualenv -p python3 ~/MNIST-ML-Algos-API/venv`
+#         `source ~/MNIST-ML-Algos-API/venv/bin/activate`
+#         `pip3 install -r requirements.txt`
+# 3. use launch script or run gunicorn command `gunicorn app:app --daemon`
+
 function initialize_worker() {
     printf "***************************************************\n\t\tSetting up host \n***************************************************\n"
     # Update packages
@@ -44,10 +56,9 @@ function clone_app_repository() {
 
 function setup_app() {
     printf "***************************************************\n    Installing App dependencies and Env Variables \n***************************************************\n"
-    setup_env
     # Install required packages
     echo ======= Installing required packages ========
-    pip install -r requirements.txt
+    pip3 install -r requirements.txt
 
 }
 
@@ -153,12 +164,16 @@ function launch_app() {
 ######################################################################
 
 initialize_worker
-setup_python_venv
+# setup_python_venv
 clone_app_repository
-setup_app
+setup_env
+# setup_app
 setup_nginx
 create_launch_script
 configure_startup_service
-launch_app
+# launch_app
+
+
+
 
 printf "***************************************************\n\t\tDONE \n***************************************************\n"
