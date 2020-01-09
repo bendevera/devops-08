@@ -1,5 +1,12 @@
 #! /bin/bash
 
+######################################################################
+########################    GREAT RESOURCE    ########################
+######################################################################
+
+# should adjust this script to this link
+# https://blog.cloudboost.io/setting-up-an-https-sever-with-node-amazon-ec2-nginx-and-lets-encrypt-46f869159469
+
 
 ######################################################################
 ########################     HOW TO USE     ##########################
@@ -11,6 +18,10 @@
 #         `source ~/MNIST-ML-Algos-API/venv/bin/activate`
 #         `pip3 install -r requirements.txt`
 # 3. use launch script or run gunicorn command `gunicorn app:app --daemon`
+
+# Notes about checking current running processes (gunicorn processes)
+# 1. check running gunicorn processes `pgrep -f gunicorn`
+# 1. kill running gunicorn processes `pkill -f gunicorn`
 
 function initialize_worker() {
     printf "***************************************************\n\t\tSetting up host \n***************************************************\n"

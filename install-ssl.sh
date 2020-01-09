@@ -36,4 +36,4 @@ function install_certificate() {
 ######################################################################
 setup_host
 install_certbot
-install_certificate
+# install_certificate
